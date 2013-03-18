@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="span3">
+        <h3>Online uživatelé</h3>
+
+        <div ng-show="reciever!=''"class="form form-inline">
+            <div ng-show="msg_sent" class="alert alert-success">Zpráva odeslána</div>
+            <input type="text" class="input-medium" ng-model="new_message">
+            <a href="javascript:void(0)" class="btn btn-info btn-small" ng-click="sendMessage()">Odeslat</a>
+            <a href="javascript:void(0)" class="btn  btn-small" ng-click="reciever=''; msg_sent=false">Zrušit</a>
+        </div>
+
+        <br>
+
+        <table class="table">
+            <tr ng-repeat="u in users">
+                <td>[[ u ]]</td>
+                <td><a href="javascript:void(0)" class="btn btn-mini btn-success" ng-click="setReciever(u)"><i class="icon-white icon-envelope"></i></a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="span6">
+        <div class="form form-inline">
+            <input type="text" class="input-xlarge" ng-model="new_topic">
+            <input type="submit" class="btn btn-primary" ng-click="add_topic(new_topic)" value="Přidat příspěvek">
+        </div>
+        <div class="clearfix"></div>
+        <br>
+
+        <div class="well" ng-repeat="t in topics">
+            <small>[[ t.author ]]</small> <span class="pull-right"><span class="btn btn-primary btn-mini"><strong>[[ t.likes ]]</strong></span>&nbsp;<a href="javascript:void(0)" ng-click="like_topic(t)" class="btn btn-mini btn-primary"><i class="icon-white icon-thumbs-up"></i></a></span><br>
+            <strong>[[ t.text ]]</strong>
+        </div>
+        <a href="javascript:void(0)" ng-click="test()">Test</a>
+    </div>
+
+    <div class="span3">
+        <h3>Moje zprávy</h3>
+        <div class="well" ng-repeat="m in messages">
+            <small>[[ m.sender ]]</small> <br>
+            <strong>[[ m.text ]]</strong>
+        </div>
+    </div>
+{% end %}

@@ -1,0 +1,8 @@
+<ul class="news-module">
+    {% for n in news %}
+    <li>
+        <span class="title">{{ n['title'] }}</span>
+        <span class="content">{{ n['content'] }}</span>
+    </li>
+    {% end %}
+</ul>
